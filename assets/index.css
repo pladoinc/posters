@@ -1,0 +1,41 @@
+/**
+ * assets/index.css - idea-1
+ * Copyright (C) 2016 PLADO Inc.
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url(https://s3.amazonaws.com/StartupStockPhotos/uploads/25.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.col {
+    position: absolute;
+    display: table;
+    overflow: hidden;
+}
+
+.col p {
+    font-size: 3.5em;
+    font-family: 'Helvetica', sans-serif;
+    color: #fff;
+    padding: 10px;
+}
+
+.col .content {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
+}

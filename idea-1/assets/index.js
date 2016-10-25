@@ -74,7 +74,7 @@ window.config = function () {
 
     const config = {
         padding: 5,
-        opacity: .7,
+        opacity: .6,
         setRows: function (n) {
             config.rows = n
             document.body.innerHTML = [... new Array(n).keys()].map(function (_,i) {

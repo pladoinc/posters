@@ -52,12 +52,8 @@ window.config = function () {
             }
         }
 
-        let max = elms.map(function (elm) {
-            let prevwidth = elm.width
-            prevwidth = prevwidth.substr(0, prevwidth.length - 2)
-            return parseFloat(prevwidth)
-        }).sort(function (a, b) {
-            return a - b
+        let max = elms.sort(function (a, b) {
+            return parseFloat(b.width.substr(0, b.width.length - 2)) - parseFloat(a.width.substr(0, a.width.length - 2))
         }).map(function (_, i) {
             return i
         })
@@ -78,7 +74,7 @@ window.config = function () {
 
     const config = {
         padding: 5,
-        opacity: .4,
+        opacity: .7,
         setRows: function (n) {
             config.rows = n
             document.body.innerHTML = [... new Array(n).keys()].map(function (_,i) {

@@ -65,11 +65,7 @@ window.config = function () {
             if (max.length > 1) elms[max[1]].html = `<p>Where <strong>everyone</strong> can teach.</p>`;
         }
 
-        return elms.map(function (elm) {
-            return `<div class="col" style="${Object.keys(elm).filter(key=>key!=='html').map(function (key) {
-                return key + ':' + elm[key];
-            }).join(';')}"><div class="content">${elm.html||''}</div></div>`
-        }).join('')
+        return elms
     }
 
     const config = {
@@ -77,8 +73,19 @@ window.config = function () {
         opacity: .6,
         setRows: function (n) {
             config.rows = n
-            document.body.innerHTML = [... new Array(n).keys()].map(function (_,i) {
-                return genRow(i)
+
+            var elms = [... new Array(n).keys()].reduce(function (prev, _, i) {
+                return prev.concat(genRow(i))
+            }, [])
+
+            elms.filter(elm => !elm.html).sort(function (a, b) {
+                return parseFloat(b.width.substr(0, b.width.length - 2)) - parseFloat(a.width.substr(0, a.width.length - 2))
+            })[0].html = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=http%3A%2F%2Fplado.ca%2F">'
+
+            document.body.innerHTML = elms.map(function (elm) {
+                return `<div class="col" style="${Object.keys(elm).filter(key=>key!=='html').map(function (key) {
+                    return key + ':' + elm[key];
+                }).join(';')}"><div class="content">${elm.html||''}</div></div>`
             }).join('')
         }
     }
